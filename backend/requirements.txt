@@ -1,0 +1,10 @@
+Flask==2.3.3
+pandas==1.5.3
+numpy==1.24.2  
+werkzeug==2.3.7
+Flask-Uploads==0.2.1
+python-dotenv==1.0.0
+Flask-CORS==5.0.0  
+uvicorn==0.22.0 
+asgiref==3.7.2
+gunicorn==20.1.0

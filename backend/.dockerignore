@@ -1,0 +1,25 @@
+# Ignore Python virtual environment
+.venv/
+
+# Ignore Git files and folders
+.git/
+.gitignore
+
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore the Dockerfile itself (optional)
+Dockerfile
+
+# Ignore IDE or editor-specific files
+.vscode/
+.idea/
+
+# Ignore log files
+*.log
+
+# Ignore any other folder or file you don’t need in the Docker image
+node_modules/
+dist/
