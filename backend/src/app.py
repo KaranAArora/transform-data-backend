@@ -15,6 +15,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    print(os.getcwd())
     print(f"Flask initialization took {time.time() - start_time} seconds")
 
     # Enable CORS (adjust for production)

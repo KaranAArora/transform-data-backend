@@ -3,7 +3,7 @@ from services.indent_to_so import indent_so_process
 from werkzeug.utils import secure_filename
 import os
 import asyncio
-from utils.clean_up import clean_up_file
+from utils.dely_delete import delayed_file_deletion
 
 # Initialize Blueprint for handling file-related routes
 file_blueprint = Blueprint('file', __name__)
@@ -37,25 +37,18 @@ async def upload_file():
     # Process file using service
     try:
 
-        processed_file_path = await indent_so_process(filepath)
+        processed_file_path, processed_file_name = await indent_so_process(filepath)
         print(processed_file_path)
-
-        @after_this_request
-        def delete_processed_file(response):
-            if os.path.exists(processed_file_path):
-                os.remove(processed_file_path)
-            return response
         
         # Send the saved file as a downloadable attachment
         response = send_file(
             processed_file_path,
             as_attachment=True,
-            download_name=os.path.basename(processed_file_path),
+            download_name=processed_file_name,
             mimetype="text/csv"
         )
-
-
-        response.set_data(jsonify({"message": "File Successfully Processed"}).get_data())
+        print(response)
+        delayed_file_deletion(processed_file_path, delay=15)
         return response
 
     

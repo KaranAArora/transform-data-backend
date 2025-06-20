@@ -117,12 +117,13 @@ async def indent_so_process(filepath):
         current_date_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 
         # Generate File Name
-        processed_file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], f"SO_Indent_Dt_{current_date_time}.csv")
+        processed_file_name =f"SO_Indent_Dt_{current_date_time}.csv"
+        processed_file_path = os.path.join(current_app.config['UPLOAD_FOLDER'], processed_file_name)
 
         # Save the DataFrame to the file path
         processed_data.to_csv(processed_file_path, index=False)
 
-        return processed_file_path
+        return processed_file_path, processed_file_name
 
     except FileNotFoundError as e:
         print(e)

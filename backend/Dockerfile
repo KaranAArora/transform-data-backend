@@ -23,4 +23,4 @@ ENV FLASK_ENV=production
 EXPOSE 5000
 
 # Start the app with Gunicorn and UvicornWorker
-CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "src.app:app", "--bind", "0.0.0.0:5000"]
+CMD ["gunicorn", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "src.app:asgi_app", "--bind", "0.0.0.0:5000"]
